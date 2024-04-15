@@ -7,25 +7,51 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.37/moment-timezone-with-data-1970-2030.min.js"></script>
     <title>Date Timezone</title>
-    <div id="tokyo"> </div>
-    <div id="local"> </div>
+    <div id="madrid"> </div>
+    <div id="quito"> </div>
+    <div id="pakistan"> </div>
   </head>
 
 <body>
 
+
+<select id="city">
+  <option value="">Select a city</option>
+  <option value="madrid">Madrid</option>
+  <option value="quito">Quito</option>
+  <option value="honolulu">Honolulu</option>
+</select>
+
+
 <script>
-let tokyoTime = moment()
-.tz("Asia/Tokyo")
-.format("dddd, MMMMD, YYYY, h:m A");
 
-let tokyoElement = document.querySelector("#tokyo");
-tokyoElement.innerHTML = tokyoTime;
+function showTime(event){
+  if (event.target.value === "madrid"){
+    alert(`Your current time zone is ${madridTime} and the current time is ${moment().format("h: m A")}`);
+  }
+  if (event.target.value === "quito"){
+    alert(`Your current time zone is ${quitoTime} and the current time is ${moment().format("h: m A")}`);
+  }
+  if (event.target.value === "honolulu") {
+    alert(`Your current time zone is ${honoluluTime} and the current time is ${moment().format("h: m A")}`);
+  }
+}
 
+  
+let honoluluTime = moment()
+      .tz("Pacific/Honolulu")
+      .format("dddd, MMMMD, YYYY, h:m A");
 
-let localTimezone = moment.tz.guess();
+let quitoTime = moment()
+    .tz("America/Guayaquil")
+    .format("dddd, MMMMD, YYYY, h:m A");
 
-let localElement = document.querySelector("#local");
-localElement.innerHTML = `Your current time zone is ${localTimezone} and the current time is ${moment().format("h:m A")}`;
+let madridTime = moment()
+    .tz("Europe/Madrid")
+    .format("dddd, MMMMD, YYYY, h:m A");
+
+let citySelect = document.querySelector("#city");
+citySelect.addEventListener("change", showTime);
 
 
 </script>
